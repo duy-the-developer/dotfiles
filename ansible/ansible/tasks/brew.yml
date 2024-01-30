@@ -1,0 +1,20 @@
+- name: Install homebrew
+  shell: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" 
+  tags: 
+    - brew 
+- name: Add brew to PATH 
+  ansible.builtin.shell: |
+    test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
+    exit 0
+  tags: 
+    - brew
+- name: Add brew to root PATH 
+  ansible.builtin.shell: |
+    test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+    exit 0 
+  tags: 
+    - brew
+- name: Add brew to .zshrc 
+  shell: echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.zshrc
+  tags: 
+    - brew

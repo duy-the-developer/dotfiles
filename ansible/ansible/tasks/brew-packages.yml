@@ -1,0 +1,44 @@
+- name: Install nvim with brew
+  community.general.homebrew: 
+    name: neovim
+  tags: 
+    - neovim
+- name: Install lazygit with brew
+  community.general.homebrew: 
+    name: jesseduffield/lazygit/lazygit 
+  tags: 
+    - lazygit
+- name: Install node with brew
+  community.general.homebrew: 
+    name: node 
+  tags: 
+    - node 
+- name: Install n 
+  become: true
+  npm:
+    name: n
+    global: true
+  tags: 
+    - node 
+- name: Install latest node version with n
+  become: true
+  shell: n latest
+  tags: 
+    - node 
+- name: Install yarn with brew
+  community.general.homebrew: 
+    name: yarn
+  tags: 
+    - yarn 
+- name: Install fzf and ripgrep with brew
+  community.general.homebrew: 
+    name: 
+      ['fzf', 'ripgrep'] 
+  tags: 
+    - fzf 
+    - ripgrep 
+- name: Install Github CLI 
+  community.general.homebrew: 
+    name: gh
+  tags: 
+    - gh 

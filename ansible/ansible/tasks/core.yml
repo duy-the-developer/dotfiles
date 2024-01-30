@@ -1,0 +1,6 @@
+- name: Install System Packages 1 (build-essential, cmake, stow)
+  become: true
+  apt: 
+    name: ['build-essential', 'cmake', 'stow']
+  tags: 
+    - core

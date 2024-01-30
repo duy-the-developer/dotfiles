@@ -1,0 +1,24 @@
+- hosts: localhost
+  pre_tasks:
+  - name: Update Apt
+    become: true
+    apt: 
+      update_cache: true
+      state: present
+    tags:
+      - core
+      - zsh
+      - kitty
+      - brew
+      - node
+      - neovim 
+      - lazygit 
+      - fzf 
+      - ripgrep 
+      - gh
+  tasks:
+    - include: tasks/core.yml
+    - include: tasks/zsh.yml
+    - include: tasks/kitty.yml
+    - include: tasks/brew.yml
+    - include: tasks/brew-packages.yml
