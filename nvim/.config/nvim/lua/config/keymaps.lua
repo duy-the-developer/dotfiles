@@ -4,23 +4,44 @@
 local keymap = vim.keymap
 local opts = { noremap = true, silent = true }
 
--- Increment/ decrement
+-- *** DISABLE DEFAULT KEYMAPS ***
+local unmap = keymap.del
+local unmapOpt = { hidden = true }
+---- Buffers
+unmap("n", "[b", unmapOpt)
+unmap("n", "]b", unmapOpt)
+unmap("n", "<leader>bb", unmapOpt) -- bro just use <C-6>
+unmap("n", "<leader>`", unmapOpt) -- bro just use <C-6>
+---- Windows
+unmap("n", "<leader>-", unmapOpt)
+unmap("n", "<leader>|", unmapOpt)
+---- Redraw
+unmap("n", "<leader>ur", unmapOpt) -- why is this needed?
+---- Diagnostics
+unmap("n", "<leader>xl", unmapOpt)
+unmap("n", "<leader>xq", unmapOpt)
+unmap("n", "<leader>cd", unmapOpt)
+---- Rename
+-- unmap("n", "<leader>cr", unmapOpt) -- why is this throwing an error? The keymap exists!
+
+-- *** PERSONAL KEYMAPS ***
+---- Increment/ decrement
 keymap.set("n", "+", "<C-a>")
 keymap.set("n", "-", "<C-x>")
 
--- Select all
+---- Select all
 keymap.set("n", "<C-a>", "gg<S-v>G")
 
--- New tab
+---- New tab
 keymap.set("n", "te", ":tabedit", opts)
--- Disabled for now because remapping <tab> also messes up <C-i> jump forward
--- keymap.set("n", "<tab>", ":tabnext<Return>", opts)
--- keymap.set("n", "<S-tab>", ":tabprev<Return>", opts)
+---- Disabled for now because remapping <tab> also messes up <C-i> jump forward
+---- keymap.set("n", "<tab>", ":tabnext<Return>", opts)
+---- keymap.set("n", "<S-tab>", ":tabprev<Return>", opts)
 
--- Split window
+---- Split window
 keymap.set("n", "ss", ":split<Return>", opts)
 keymap.set("n", "sv", ":vsplit<Return>", opts)
-keymap.set("n", "sd", function()
+keymap.set("n", "sd", function() -- :q if there's more than 1 window
   local function count_buffer_windows()
     local count = 0
     for _, win in ipairs(vim.api.nvim_list_wins()) do
@@ -32,29 +53,14 @@ keymap.set("n", "sd", function()
     return count
   end
   local num_windows = count_buffer_windows()
-  print(num_windows)
   if num_windows > 1 then
     vim.cmd("q")
+  else
+    require("noice").notify("Cannot close last window, are you trying to quit (:q)?", "error")
   end
 end, opts)
 
--- Delete default keymaps
----- Buffers
-keymap.del("n", "[b")
-keymap.del("n", "]b")
-keymap.del("n", "<leader>bb") -- bro just use <C-6>
-keymap.del("n", "<leader>`") -- bro just use <C-6>
----- Windows
-keymap.del("n", "<leader>-")
-keymap.del("n", "<leader>|")
----- Redraw
-keymap.del("n", "<leader>ur") -- why is this needed?
 ---- Diagnostics
-keymap.del("n", "<leader>xl")
-keymap.del("n", "<leader>xq")
-keymap.del("n", "<leader>cd")
-
--- Diagnostics
 keymap.set("n", "<leader>df", function()
   vim.diagnostic.open_float()
 end, { desc = "Open floating diagnostic" })
@@ -74,3 +80,10 @@ end, { desc = "Go to next diagnostic" })
 keymap.set("n", "<leader>dN", function()
   vim.diagnostic.goto_prev()
 end, { desc = "Go to previous diagnostic" })
+
+---- Code actions
+keymap.set("n", "<leader>rn", function()
+  vim.lsp.buf.rename()
+end, {
+  desc = "Rename symbol",
+})

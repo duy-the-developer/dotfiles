@@ -8,3 +8,6 @@ opt.scrolloff = 8
 opt.sidescrolloff = 8
 opt.splitkeep = "cursor"
 opt.mouse = "" -- disable mouse
+opt.fillchars = {
+  eob = "~",
+}
