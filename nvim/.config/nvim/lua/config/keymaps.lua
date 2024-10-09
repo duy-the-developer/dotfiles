@@ -59,6 +59,7 @@ keymap.set("n", "sd", function() -- :q if there's more than 1 window
     require("noice").notify("Cannot close last window, are you trying to quit (:q)?", "error")
   end
 end, opts)
+-- Example commit
 
 ---- Diagnostics
 keymap.set("n", "<leader>df", function()
