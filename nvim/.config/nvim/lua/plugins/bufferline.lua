@@ -49,7 +49,11 @@ return {
     options = {
       always_show_bufferline = true,
       name_formatter = function(buffer)
-        return format_path(buffer.path)
+        if buffer.path == "" then
+          return
+        else
+          return format_path(buffer.path)
+        end
       end,
       max_name_length = max_name_length,
       show_duplicate_prefix = false,
