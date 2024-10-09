@@ -20,12 +20,39 @@ keymap.set("n", "te", ":tabedit", opts)
 -- Split window
 keymap.set("n", "ss", ":split<Return>", opts)
 keymap.set("n", "sv", ":vsplit<Return>", opts)
+keymap.set("n", "sd", function()
+  local function count_buffer_windows()
+    local count = 0
+    for _, win in ipairs(vim.api.nvim_list_wins()) do
+      local config = vim.api.nvim_win_get_config(win)
+      if not config.relative or config.relative == "" then
+        count = count + 1
+      end
+    end
+    return count
+  end
+  local num_windows = count_buffer_windows()
+  print(num_windows)
+  if num_windows > 1 then
+    vim.cmd("q")
+  end
+end, opts)
 
--- Resize window
-keymap.set("n", "<C-w><left>", "<C-w><", opts)
-keymap.set("n", "<C-w><right>", "<C-w>>", opts)
-keymap.set("n", "<C-w><down>", "<C-w>-", opts)
-keymap.set("n", "<C-w><up>", "<C-w>+", opts)
+-- Delete default keymaps
+---- Buffers
+keymap.del("n", "[b")
+keymap.del("n", "]b")
+keymap.del("n", "<leader>bb") -- bro just use <C-6>
+keymap.del("n", "<leader>`") -- bro just use <C-6>
+---- Windows
+keymap.del("n", "<leader>-")
+keymap.del("n", "<leader>|")
+---- Redraw
+keymap.del("n", "<leader>ur") -- why is this needed?
+---- Diagnostics
+keymap.del("n", "<leader>xl")
+keymap.del("n", "<leader>xq")
+keymap.del("n", "<leader>cd")
 
 -- Diagnostics
 keymap.set("n", "<leader>df", function()
