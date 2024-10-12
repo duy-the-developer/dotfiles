@@ -13,15 +13,6 @@ return {
     lazy = true,
   },
   {
-    "craftzdog/solarized-osaka.nvim",
-    lazy = true,
-    opts = function()
-      return {
-        transparent = true,
-      }
-    end,
-  },
-  {
     "projekt0n/github-nvim-theme",
     lazy = true,
   },
@@ -36,7 +27,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "cyberpunk",
+      colorscheme = "",
     },
   },
 }
