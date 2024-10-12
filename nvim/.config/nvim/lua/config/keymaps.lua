@@ -23,6 +23,7 @@ unmap("n", "<leader>xq", unmapOpt)
 unmap("n", "<leader>cd", unmapOpt)
 ---- Rename
 -- unmap("n", "<leader>cr", unmapOpt) -- why is this throwing an error? The keymap exists!
+unmap("n", "<leader>cf", unmapOpt)
 
 -- *** PERSONAL KEYMAPS ***
 ---- Increment/ decrement
@@ -59,7 +60,6 @@ keymap.set("n", "sd", function() -- :q if there's more than 1 window
     require("noice").notify("Cannot close last window, are you trying to quit (:q)?", "error")
   end
 end, opts)
--- Example commit
 
 ---- Diagnostics
 keymap.set("n", "<leader>df", function()
@@ -87,4 +87,10 @@ keymap.set("n", "<leader>rn", function()
   vim.lsp.buf.rename()
 end, {
   desc = "Rename symbol",
+})
+
+keymap.set("n", "<leader>bf", function()
+  LazyVim.format({ force = true })
+end, {
+  desc = "Buffer format",
 })
