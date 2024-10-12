@@ -1,7 +1,8 @@
 {
   "extras": [
     "lazyvim.plugins.extras.lang.markdown",
-    "lazyvim.plugins.extras.lang.typescript"
+    "lazyvim.plugins.extras.lang.typescript",
+    "lazyvim.plugins.extras.util.mini-hipatterns"
   ],
   "news": {
     "NEWS.md": "6520"
