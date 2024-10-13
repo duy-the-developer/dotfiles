@@ -66,22 +66,6 @@ keymap.set("n", "<leader>df", function()
   vim.diagnostic.open_float()
 end, { desc = "Open floating diagnostic" })
 
-keymap.set("n", "<leader>do", function()
-  vim.diagnostic.setloclist()
-end, { desc = "Diagnostics quickfix (current buffer)" })
-
-keymap.set("n", "<leader>dO", function()
-  vim.diagnostic.setqflist()
-end, { desc = "Diagnostics quickfix (all)" })
-
-keymap.set("n", "<leader>dn", function()
-  vim.diagnostic.goto_next()
-end, { desc = "Go to next diagnostic" })
-
-keymap.set("n", "<leader>dN", function()
-  vim.diagnostic.goto_prev()
-end, { desc = "Go to previous diagnostic" })
-
 ---- Code actions
 keymap.set("n", "<leader>rn", function()
   vim.lsp.buf.rename()
