@@ -26,6 +26,8 @@ unmap("n", "<leader>cd", unmapOpt)
 unmap("n", "<leader>cf", unmapOpt)
 
 -- *** PERSONAL KEYMAPS ***
+---- Save with <leader><space>
+keymap.set("n", "<leader><space>", "<cmd>w<cr>")
 ---- Increment/ decrement
 keymap.set("n", "+", "<C-a>")
 keymap.set("n", "-", "<C-x>")
