@@ -4,6 +4,9 @@
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
+# Default editor
+export EDITOR="nvim"
+
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time Oh My Zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -114,6 +117,9 @@ alias gd="git diff"
 alias gl="git log"
 alias gco="git checkout"
 alias gb="git branch"
+
+# Functions
+for fn ($HOME/zsh/functions/*.zsh) source $fn
 
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 

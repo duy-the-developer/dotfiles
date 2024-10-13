@@ -21,13 +21,13 @@ return {
     lazy = false,
     priority = 1000,
     config = function()
-      vim.g.cyberpunk_cursorline = "black"
+      vim.g.cyberpunk_cursorline = "default"
     end,
   },
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "cyberpunk",
+      colorscheme = "everforest",
     },
   },
 }
