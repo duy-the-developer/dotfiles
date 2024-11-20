@@ -15,3 +15,12 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     vim.wo.conceallevel = 2
   end,
 })
+
+-- Shiftwidth 4 for java
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  pattern = { "java" },
+  callback = function()
+    vim.opt_local.shiftwidth = 4
+    vim.opt_local.tabstop = 4
+  end,
+})
