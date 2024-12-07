@@ -2,21 +2,21 @@
 # fe [FUZZY PATTERN] - Open the selected file with the default editor
 #   - Bypass fuzzy finder if there's only one match (--select-1)
 #   - Exit if there's no match (--exit-0)
-function fe {
+function sf {
   local files
   IFS=$'\n' files=($(fzf --query="$1" --multi --select-1 --exit-0))
   [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
 }
 
 # fcd - cd to selected directory
-function fcd {
+function sd {
   local dir
   dir=$(fd . "${1:-.}" --type=d | fzf --no-multi --layout=reverse --height=40%) &&
   cd "$dir"
 }
 
 # fcda - including hidden directories
-function fcda {
+function sda {
   local dir
   dir=$(fd . "${1:-.}" --hidden --type=d | fzf --no-multi --layout=reverse --height=40%) &&
   cd "$dir"
